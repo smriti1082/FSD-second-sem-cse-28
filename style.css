@@ -1,0 +1,23 @@
+body {
+    background-color: lightblue;
+    text-decoration: dashed;
+}
+h1 {
+    color: darkblue;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    font-size: 50px;
+}
+p {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    color: blueviolet;
+}
+a {
+    color: red;
+}
+h2 {
+    color: green;
+    text-align:left;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
