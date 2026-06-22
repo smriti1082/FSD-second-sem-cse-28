@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Student Result Calculator</title>
-<link rel="stylesheet" href="style1.css">
+<title>Dynamic Content Changer</title>
+<link rel="stylesheet" href="index.css">
 </head>
 <body>
 <div class="container">
-<h2>Student Result Calculator</h2>
-<label for="subjects">Enter Number of Subjects</label><br>
-<input type="number" id="subjects"><br><br>
-<button onclick="calculateResult()">Calculate Result</button>
-<div id="result"></div>
+<h2 id="mainHeading">Welcome to JavaScript Lab</h2>
+<input type="text" id="userInput" placeholder="Enter new heading text">
+<br><br>
+<button id="changeTextBtn">Change Heading</button>
+
+<button id="bgColorBtn">Change Background</button>
+<button id="fontSizeBtn">Increase Font Size</button>
+<button id="toggleBtn">Show/Hide Paragraph</button>
+<button id="resetBtn">Reset</button>
+<p id="paragraph">
+This is a sample paragraph. JavaScript events can dynamically change content.
+</p>
 </div>
-<script src="script1.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
