@@ -1,60 +1,233 @@
-const { log } = require("console");
+let students =
+JSON.parse(localStorage.getItem("students")) || [];
 
-/*console.log("hello world");
-/*var a=10 ;
-var a=20;
-console.log(a);*/
-/* var b = 20;
-var c = a + b;
-console.log(c);*/
-//console.log("let introduction");
-//let a=10;
-////a=90;
-//let a=30;
-///console.log(a);
-//const x=100;
-//x=500;
-//console.log(x);
-//data tupes(primitive{7types} and non primitive{object})
-/*let name = "Alice";        // String
-let age = 30;              // Number
-let isStudent = true;      // Boolean
-let score;                 // Undefined
-let car = null;            // Null
-let person = { name: "Bob", age: 25 }; // Object
-console.log(name);
-console.log(age);
-console.log(isStudent);
-console.log(score);
-console.log(car);
-console.log(person);*/
+const studentTable =
+document.getElementById("studentTable");
 
-//operators in JS(•	Arithmetic Operators)
-/*let a=10;
-let b=20;
-console.log(a+b);
-console.log(a-b);   
-console.log(a*b);
-console.log(a/b);
-console.log(a%b);
-console.log(a**b);
-//•	Assignment Operators: =, +=, -=, *=, /=, %=
-/*let c=10;
-c+=5;
-//console.log(c);
-c-=3;
-console.log(c);
-c*=2;
-console.log(c);
-c/=4;
-console.log(c);
-c%=3;
-console.log(c);*/
+const totalStudents =
+document.getElementById("totalStudents");
 
-//•	Comparison Operators: == (loose equality), === (strict equality), !=, !==, >, <, >=, <=.
-let x=10;
-let y="10";
-console.log(x==y);
-console.log(x===y);
-console.log(x!=y);
-console.log(x!==y);
+const averagePercentage =
+document.getElementById("averagePercentage");
+
+displayStudents();
+
+/* Add Student */
+
+function addStudent() {
+
+    let name =
+    document.getElementById("name").value.trim();
+
+    let roll =
+    document.getElementById("roll").value.trim();
+
+    let marks =
+    parseInt(
+        document.getElementById("marks").value
+    );
+
+    if(name === "" || roll === "" || isNaN(marks))
+    {
+        alert("Please fill all fields");
+        return;
+    }
+
+    let percentage = marks;
+
+    let grade = calculateGrade(marks);
+
+    let student = {
+        name,
+        roll,
+        marks,
+        percentage,
+        grade
+    };
+
+    students.push(student);
+
+    saveData();
+
+    displayStudents();
+
+    clearFields();
+}
+
+/* Grade */
+
+function calculateGrade(marks){
+
+    if(marks >= 90)
+        return "A+";
+
+    if(marks >= 80)
+        return "A";
+
+    if(marks >= 70)
+        return "B";
+
+    if(marks >= 60)
+        return "C";
+
+    return "D";
+}
+
+/* Display Students */
+
+function displayStudents(){
+
+    if(students.length === 0){
+
+        studentTable.innerHTML = `
+        <tr>
+            <td colspan="6">
+                <div class="empty-state">
+                    <i class="fa-solid fa-box-open"></i>
+                    <h3>No students added yet.</h3>
+                </div>
+            </td>
+        </tr>
+        `;
+
+        updateDashboard();
+        return;
+    }
+
+    studentTable.innerHTML = "";
+
+    students.forEach((student,index)=>{
+
+        studentTable.innerHTML += `
+
+        <tr>
+
+            <td>${student.name}</td>
+
+            <td>${student.roll}</td>
+
+            <td>${student.marks}</td>
+
+            <td>${student.percentage}%</td>
+
+            <td>${student.grade}</td>
+
+            <td>
+
+                <button
+                class="delete-btn"
+                onclick="deleteStudent(${index})">
+
+                Delete
+
+                </button>
+
+            </td>
+
+        </tr>
+
+        `;
+    });
+
+    updateDashboard();
+}
+
+/* Delete Student */
+
+function deleteStudent(index){
+
+    let confirmDelete =
+    confirm("Delete this student?");
+
+    if(confirmDelete){
+
+        students.splice(index,1);
+
+        saveData();
+
+        displayStudents();
+    }
+}
+
+/* Search */
+
+document
+.getElementById("search")
+.addEventListener("keyup",function(){
+
+    let value =
+    this.value.toLowerCase();
+
+    let rows =
+    document.querySelectorAll(
+        "#studentTable tr"
+    );
+
+    rows.forEach(row=>{
+
+        row.style.display =
+        row.innerText.toLowerCase()
+        .includes(value)
+        ? ""
+        : "none";
+    });
+
+});
+
+/* Dashboard */
+
+function updateDashboard(){
+
+    totalStudents.innerText =
+    students.length;
+
+    let total = 0;
+
+    students.forEach(student=>{
+
+        total += student.percentage;
+
+    });
+
+    let avg =
+    students.length > 0
+    ?
+    (total / students.length).toFixed(2)
+    :
+    0;
+
+    averagePercentage.innerText =
+    avg + "%";
+}
+
+/* Local Storage */
+
+function saveData(){
+
+    localStorage.setItem(
+        "students",
+        JSON.stringify(students)
+    );
+}
+
+/* Clear Inputs */
+
+function clearFields(){
+
+    document.getElementById("name").value = "";
+
+    document.getElementById("roll").value = "";
+
+    document.getElementById("marks").value = "";
+}
+
+/* Dark Mode */
+
+document
+.getElementById("themeBtn")
+.addEventListener("click",()=>{
+
+    document.body
+    .classList.toggle("dark");
+
+});
