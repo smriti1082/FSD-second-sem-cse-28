@@ -1,197 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Student Management System</title>
-
+    <title>Factorial Calculator</title>
     <link rel="stylesheet" href="style.css">
-
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-
 <body>
 
     <div class="container">
+        <h1>Factorial Calculator</h1>
 
-        <!-- Header -->
+        <input type="number" id="number" placeholder="Enter a number">
 
-        <div class="header">
+        <button onclick="calculateFactorial()">
+            Calculate Factorial
+        </button>
 
-            <div class="logo-title">
-
-                <i class="fa-solid fa-graduation-cap"></i>
-
-                <h1>Student Management System</h1>
-
-            </div>
-
-            <button id="themeBtn">
-                <i class="fa-solid fa-moon"></i>
-                Dark Mode
-            </button>
-
-        </div>
-
-        <!-- Dashboard -->
-
-        <div class="dashboard">
-
-            <div class="card students-card">
-
-                <i class="fa-solid fa-users"></i>
-
-                <div>
-
-                    <h3>Total Students</h3>
-
-                    <p id="totalStudents">0</p>
-
-                </div>
-
-            </div>
-
-            <div class="card avg-card">
-
-                <i class="fa-solid fa-arrow-trend-up"></i>
-
-                <div>
-
-                    <h3>Average Percentage</h3>
-
-                    <p id="averagePercentage">0%</p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- Search -->
-
-        <div class="search-box">
-
-            <input
-                type="text"
-                id="search"
-                placeholder="Search Student by Name or Roll No...">
-
-        </div>
-
-        <!-- Form -->
-
-        <div class="form">
-
-            <div class="input-box">
-
-                <i class="fa-regular fa-user"></i>
-
-                <input
-                    type="text"
-                    id="name"
-                    placeholder="Student Name">
-
-            </div>
-
-            <div class="input-box">
-
-                <i class="fa-regular fa-id-card"></i>
-
-                <input
-                    type="text"
-                    id="roll"
-                    placeholder="Roll Number">
-
-            </div>
-
-            <div class="input-box">
-
-                <i class="fa-solid fa-book-open"></i>
-
-                <input
-                    type="number"
-                    id="marks"
-                    placeholder="Marks (0 - 100)">
-
-            </div>
-
-            <button
-                class="add-btn"
-                onclick="addStudent()">
-
-                <i class="fa-solid fa-plus"></i>
-
-                Add Student
-
-            </button>
-
-        </div>
-
-        <!-- Table -->
-
-        <div class="table-container">
-
-            <table>
-
-                <thead>
-
-                    <tr>
-
-                        <th>Name</th>
-
-                        <th>Roll No</th>
-
-                        <th>Marks</th>
-
-                        <th>Percentage</th>
-
-                        <th>Grade</th>
-
-                        <th>Action</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody id="studentTable">
-
-                    <tr>
-
-                        <td colspan="6">
-
-                            <div class="empty-state">
-
-                                <i class="fa-solid fa-box-open"></i>
-
-                                <h3>No students added yet.</h3>
-
-                            </div>
-
-                        </td>
-
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-        <!-- Footer -->
-
-        <footer>
-
-            © 2026 Student Management System. All rights reserved.
-
-        </footer>
-
+        <h2 id="result"></h2>
     </div>
 
     <script src="script.js"></script>
-
 </body>
-
 </html>
